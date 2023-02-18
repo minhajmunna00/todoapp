@@ -2,30 +2,25 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #44a7f1;
+  border-radius: 10px;
 }
 
 .App-main {
@@ -39,14 +34,34 @@
 .sidebar {
   width: 20%;
   /* min-width: 180px; */
-  background-color: #deded8;
-  height: 100%;
+  background-color: #ffffff;
+  height: 90vh;
+  overflow-y: hidden;
   display: block;
+  box-shadow: 12px 2px 25px -4px rgba(82, 82, 82, 0.31);
+  z-index: 1;
+}
+
+.sidebar-btn-custom {
+  background-color: transparent !important;
+  color: black !important;
+  border: none;
+  outline: #44a7f1 solid 1px !important;
+  font-size: 1.2rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.sidebar-btn-custom:hover {
+  background-color: #44a7f1 !important;
+  color: black !important;
 }
 
 .groupWorkspace {
   width: 80%;
-  height: 100%;
+  height: 90vh;
+  background-color: #f3f4f9;
+  /* background-image: url("./images/background.png");
+  background-repeat: no-repeat; */
 }
 
 .scroll {
@@ -54,7 +69,7 @@
   max-width: 100%;
   overflow-x: hidden;
   /* need to change to adjust to screen height */
-  height: 500px;
+  /* height: 500px; */
 }
 
 .react-pdf__Page__canvas {
@@ -74,11 +89,24 @@
 .groupTab {
   border-style: solid;
   border-width: 2px;
-  border-color: black;
+  border: 1px solid #44a7f1;
+  margin: 10px 10px;
+  border-radius: 15px;
+}
+.groupTab:hover {
+  background-color: #44a7f1;
+  cursor: pointer;
+  color: white;
 }
 
 .navbar-custom {
   box-shadow: 0px 28px 25px -13px rgba(150, 150, 150, 0.24);
+}
+.nav-link {
+  border-bottom: 2px solid #f8f9fa;
+}
+.nav-link:hover {
+  border-bottom: 2px solid #44a7f1;
 }
 
 @media screen and (max-width: 400px) {

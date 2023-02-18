@@ -32,16 +32,16 @@ export default function NavigationBar() {
             style={{ maxHeight: "100px", fontSize: "1.2rem" }}
             navbarScroll
           >
-            <Link to="" className="nav-link text-dark">
+            <Link to="/" className="nav-link text-dark">
               Home
             </Link>
-            <Link to="" className="nav-link text-dark">
+            <Link to="/invites" className="nav-link text-dark">
               Invites
             </Link>
-            <Link to="" className="nav-link text-dark">
+            <Link to="/login" className="nav-link text-dark">
               My Account
             </Link>
-            <Link to="" className="nav-link text-dark">
+            <Link to="/login" className="nav-link text-dark">
               Logout
             </Link>
           </Nav>
