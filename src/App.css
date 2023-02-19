@@ -109,6 +109,18 @@
   border-bottom: 2px solid #44a7f1;
 }
 
+/* comment text area design here */
+.comment-textarea {
+  box-sizing: border-box;
+  border: 1px solid #44a7f1;
+  border-radius: 10px;
+}
+.comment-textarea:focus {
+  outline: none;
+  border: 1px solid #44a7f1;
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 400px) {
   .App {
     height: auto;

@@ -1,4 +1,4 @@
-import { useState, React } from "react";
+import { useState, React, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import Navbar from "./Navbar";
@@ -24,8 +24,28 @@ export default function AnnotationPage() {
 
   // showing and closing the delete confimation modal
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [textComment, setTextComment] = useState("");
+
   const closeModal = () => setShow(false);
   const showModal = () => setShow(true);
+  const closeEditModal = () => setShowEdit(false);
+  const showEditModal = () => setShowEdit(true);
+
+  let data = JSON.parse(localStorage.getItem("commentArray"));
+
+  const onSubmitCommentHandler = () => {
+    // initialize
+    var myArray = [];
+    // load saved array
+    if (window.localStorage["commentArray"] != null)
+      myArray = JSON.parse(window.localStorage["commentArray"]);
+    // modify array
+    myArray.push(textComment);
+    // re-save array
+    window.localStorage["commentArray"] = JSON.stringify(myArray);
+  };
 
   // method that handles the delete pdf request
   const deleteHandle = () => {
@@ -78,114 +98,50 @@ export default function AnnotationPage() {
             <Col>
               <div style={{ height: "75vh" }}>
                 <div className="h-75 py-3 scroll">
-                  <div className="d-flex align-items-center mb-2">
-                    <div style={{ width: "80%" }}>
-                      <p className="bg-primary p-2 rounded-4 text-white m-0">
-                        Message Text HereMessage Text HereMessage Text
-                        HereMessage Text Here
-                      </p>
+                  {data?.map((item) => (
+                    <div className="d-flex align-items-center mb-2">
+                      <div style={{ width: "80%" }}>
+                        <p className="bg-primary p-2 rounded-4 text-white m-0">
+                          {item}
+                        </p>
+                      </div>
+                      <div className="ms-3">
+                        <i
+                          className="fa-solid fa-pen-to-square me-4"
+                          style={{ cursor: "pointer" }}
+                          onClick={showEditModal}
+                        ></i>
+                        <i
+                          className="fa-solid fa-trash"
+                          style={{ cursor: "pointer" }}
+                        ></i>
+                      </div>
                     </div>
-                    <div className="ms-3">
-                      <i class="fa-solid fa-pen-to-square me-4"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-2">
-                    <div style={{ width: "80%" }}>
-                      <p className="bg-primary p-2 rounded-4 text-white m-0">
-                        Message Text HereMessage Text HereMessage Text
-                        HereMessage Text Here
-                      </p>
-                    </div>
-                    <div className="ms-3">
-                      <i class="fa-solid fa-pen-to-square me-4"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-2">
-                    <div style={{ width: "80%" }}>
-                      <p className="bg-primary p-2 rounded-4 text-white m-0">
-                        Message Text HereMessage Text HereMessage Text
-                        HereMessage Text Here
-                      </p>
-                    </div>
-                    <div className="ms-3">
-                      <i class="fa-solid fa-pen-to-square me-4"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-2">
-                    <div style={{ width: "80%" }}>
-                      <p className="bg-primary p-2 rounded-4 text-white m-0">
-                        Message Text HereMessage Text HereMessage Text
-                        HereMessage Text Here
-                      </p>
-                    </div>
-                    <div className="ms-3">
-                      <i class="fa-solid fa-pen-to-square me-4"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-2">
-                    <div style={{ width: "80%" }}>
-                      <p className="bg-primary p-2 rounded-4 text-white m-0">
-                        Message Text HereMessage Text HereMessage Text
-                        HereMessage Text Here
-                      </p>
-                    </div>
-                    <div className="ms-3">
-                      <i class="fa-solid fa-pen-to-square me-4"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-2">
-                    <div style={{ width: "80%" }}>
-                      <p className="bg-primary p-2 rounded-4 text-white m-0">
-                        Message Text HereMessage Text HereMessage Text
-                        HereMessage Text Here
-                      </p>
-                    </div>
-                    <div className="ms-3">
-                      <i class="fa-solid fa-pen-to-square me-4"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-2">
-                    <div style={{ width: "80%" }}>
-                      <p className="bg-primary p-2 rounded-4 text-white m-0">
-                        Message Text HereMessage Text HereMessage Text
-                        HereMessage Text Here
-                      </p>
-                    </div>
-                    <div className="ms-3">
-                      <i class="fa-solid fa-pen-to-square me-4"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center mb-2">
-                    <div style={{ width: "80%" }}>
-                      <p className="bg-primary p-2 rounded-4 text-white m-0">
-                        Message Text HereMessage Text HereMessage Text
-                        HereMessage Text Here
-                      </p>
-                    </div>
-                    <div className="ms-3">
-                      <i class="fa-solid fa-pen-to-square me-4"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div>
-                  </div>
+                  ))}
                 </div>
-                <div className="h-25 d-flex align-items-end">
-                  <InputGroup className="mb-3 ">
-                    <Form.Control
-                      placeholder="type your comment"
-                      aria-label="Recipient's username"
-                      aria-describedby="basic-addon2"
-                    />
-                    <Button variant="outline-secondary" id="button-addon2">
-                      <i class="fa-solid fa-paper-plane fa-2x"></i>
-                    </Button>
-                  </InputGroup>
+                <div className="h-25 ">
+                  <Form
+                    className="d-flex align-items-end"
+                    onSubmit={onSubmitCommentHandler}
+                  >
+                    <InputGroup className="mb-3 ">
+                      <Form.Control
+                        placeholder="type your comment"
+                        aria-label="Recipient's username"
+                        aria-describedby="basic-addon2"
+                        onChange={(e) => {
+                          setTextComment(e.target.value);
+                        }}
+                      />
+                      <Button
+                        type="submit"
+                        variant="outline-secondary"
+                        id="button-addon2"
+                      >
+                        <i className="fa-solid fa-paper-plane fa-2x"></i>
+                      </Button>
+                    </InputGroup>
+                  </Form>
                 </div>
               </div>
             </Col>
@@ -213,6 +169,33 @@ export default function AnnotationPage() {
               </Button>
             </Link>
           </Modal.Footer>
+        </Modal>
+
+        {/* comment edit modal */}
+        <Modal
+          show={showEdit}
+          onHide={closeEditModal}
+          backdrop="static"
+          keyboard={false}
+        >
+          <Modal.Header closeButton>
+            {/* <Modal.Title>Modal title</Modal.Title> */}
+          </Modal.Header>
+          <Modal.Body>
+            <form>
+              <textarea
+                className="comment-textarea"
+                name="comment"
+                id=""
+                cols="60"
+                rows="4"
+                onChange={(e) => {
+                  setTextComment(e.target.value);
+                }}
+              ></textarea>
+              <button className="sidebar-btn-custom">Update</button>
+            </form>
+          </Modal.Body>
         </Modal>
       </main>
     </div>
